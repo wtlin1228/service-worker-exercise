@@ -35,7 +35,6 @@
   }
 
   async function initServiceWorker() {
-    console.log("initialize service worker");
     swRegistration = await navigator.serviceWorker.register("/sw.js", {
       updateViaCache: "none",
     });
@@ -44,6 +43,8 @@
       swRegistration.installing ||
       swRegistration.waiting ||
       swRegistration.active;
+
+    sendStatusUpdate(svcworker);
 
     navigator.serviceWorker.addEventListener(
       "controllerchange",
